@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    value_object_ar (0.0.2)
+    value_object_ar (0.0.3)
       activerecord
 
 GEM

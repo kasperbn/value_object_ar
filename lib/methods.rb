@@ -26,7 +26,7 @@ module ValueObjectAR
           else
             value_or_object
           end
-          attributes[attribute.to_s] = value
+          super(value)
         end
       end
     

@@ -37,12 +37,8 @@ class CurrencyValueObject
   
 end
 
-class Product
-  
+class ActiveRecord::Mock
   include ValueObjectAR::Methods
-  value_object :currency, CurrencyValueObject
-
-  # ActiveRecord behaviour below:
   attr_accessor :attributes
     
   def initialize(options={})
@@ -50,7 +46,14 @@ class Product
   end
   
   def attributes
-    @attributes ||= {'currency' => nil}
+    @attributes ||= {}
   end
   
+  def currency=(value)
+    attributes['currency'] = value
+  end
+end
+
+class Product < ActiveRecord::Mock
+  value_object :currency, CurrencyValueObject
 end
