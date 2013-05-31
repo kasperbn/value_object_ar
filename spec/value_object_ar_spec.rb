@@ -1,24 +1,37 @@
-require_relative "../../lib/value_object_ar"
+require_relative "../lib/value_object_ar"
 
 describe "ValueObjectAr" do
 
-  it 'should behave as a value object' do
-    p = Product.new(currency: 'dkk')
-    p.currency.hipstier_than_bitcoin?.should == "probably not"
+  before(:each) do
+    @product = Product.new(currency: 'DKK')
+  end
+
+  it 'should call methods on value object' do
+    @product.currency.hipstier_than_bitcoin?.should == "DKK? Probably not"
+  end
+  
+  it 'should set with value' do
+    @product.currency = 'EUR'
+    @product.currency.hipstier_than_bitcoin?.should == "EUR? Probably not"
+  end
+  
+  it 'should set with value object' do
+    @product.currency = Currency.new('USD')
+    @product.currency.hipstier_than_bitcoin?.should == "USD? Probably not"
   end
   
 end
 
 class Currency
   
-  attr_accessor :currency, :answer
+  attr_accessor :currency
   
   def initialize(currency)
     @currency = currency
   end
   
   def hipstier_than_bitcoin?
-    "probably not"
+    "#{currency}? Probably not"
   end
   
 end
@@ -26,10 +39,9 @@ end
 class Product
   
   include ValueObjectAR::Methods
-  value_object :currency, Currency  
+  value_object :currency, Currency
 
   # ActiveRecord behaviour below:
-  attr_accessor :currency  
   attr_accessor :attributes
     
   def initialize(options={})
@@ -37,7 +49,7 @@ class Product
   end
   
   def attributes
-    {'currency' => nil}
+    @attributes ||= {'currency' => nil}
   end
   
 end
