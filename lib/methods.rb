@@ -20,9 +20,11 @@ module ValueObjectAR
       end
     
       def define_value_object_ar_writer(attribute, klass)
-        define_method("#{attribute}=") do |value|
-          if value.is_a?(klass) 
-            value = value.send(attribute)
+        define_method("#{attribute}=") do |value_or_object|
+          value = if value_or_object.is_a?(klass) 
+            value_or_object.value
+          else
+            value_or_object
           end
           attributes[attribute.to_s] = value
         end

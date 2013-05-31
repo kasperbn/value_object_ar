@@ -19,24 +19,24 @@ or in bundler
 Wrap a value in a class like this:
 
     class Product < ActiveRecord::Base
-      value_object :currency, Currency
+      value_object :currency, CurrencyValueObject
     end
     
-    class Currency
+    class CurrencyValueObject
       
-      attr_accessor :currency
+      attr_accessor :value
       
-      def initialize(currency)
-        @currency = currency
+      def initialize(value)
+        @value = value
       end
       
       def hipstier_than_bitcoin?
-        "#{currency}? Probably not"
+        "#{value}? Probably not"
       end
 
     end
     
-Call the methods of `Currency` like this:
+Call the methods of `CurrencyValueObject` like this:
 
     product = Product.new(currency: 'DKK')
     product.currency.hipstier_than_bitcoin? # => "DKK? Probably not"
