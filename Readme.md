@@ -46,8 +46,7 @@ Set `product.currency` either by value:
     
 .. or by value object:
   
-    usd = Currency.new('USD')
-    product.currency = usd
+    product.currency = Currency.new('USD')
     product.currency.hipstier_than_bitcoin? # => "USD? Probably not"
   
 ## Licence
@@ -56,5 +55,4 @@ MIT Licence
 
 ## Author
 
-Kasper Bjørn Nielsen
-kasperbn@gmail.com
+Kasper Bjørn Nielsen (kasperbn@gmail.com)
