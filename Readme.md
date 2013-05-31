@@ -1,5 +1,7 @@
 # Value Object AR
 
+[![Build Status](https://travis-ci.org/kasperbn/value_object_ar.png)](https://travis-ci.org/kasperbn/value_object_ar)
+
 Value objects for your active models. Conveniently, set your attributes either by value or value object.
 
 ## Installation
